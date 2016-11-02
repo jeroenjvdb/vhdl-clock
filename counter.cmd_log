@@ -1,0 +1,1 @@
+xst -intstyle ise -ifn "D:/school/SCH-IW_EI/elektronica/digitale/labo/working_directory/clock/counter.xst" -ofn "D:/school/SCH-IW_EI/elektronica/digitale/labo/working_directory/clock/counter.syr" 
