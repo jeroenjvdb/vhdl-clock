@@ -45,24 +45,24 @@ ARCHITECTURE behavior OF counter_tb IS
          cnten : IN  std_logic;
          reset : IN  std_logic;
          upDwn : IN  std_logic;
-         min : IN  std_logic_vector(3 downto 0);
-         max : IN  std_logic_vector(3 downto 0);
-         count : OUT  std_logic_vector(3 downto 0);
+         min : IN  std_logic_vector(7 downto 0) := x"00";
+         max : IN  std_logic_vector(7 downto 0) := x"99";
+         count : OUT  std_logic_vector(7 downto 0);
          tc : OUT  std_logic
         );
     END COMPONENT;
     
 
-   --Inputs
+   --Inputs 
    signal sysclk : std_logic := '0';
    signal cnten : std_logic := '0';
-   signal reset : std_logic := '0';
+   signal reset : std_logic := '0'; 
    signal upDwn : std_logic := '0';
-   signal min : std_logic_vector(3 downto 0) := (others => '0');
-   signal max : std_logic_vector(3 downto 0) := (others => '0');
+   signal min : std_logic_vector(7 downto 0) := (others => '0');
+   signal max : std_logic_vector(7 downto 0) := (others => '0');
 
  	--Outputs
-   signal count : std_logic_vector(3 downto 0);
+   signal count : std_logic_vector(7 downto 0);
    signal tc : std_logic;
 
    -- Clock period definitions
@@ -94,16 +94,23 @@ BEGIN
 
    -- Stimulus process
    stim_proc: process 
-   begin		
-		reset <= '1'; cnten <= '1';
-				wait for 100 ns;
-		min <= x"0"; max <= x"9";		
-		reset <= '0'; cnten <= '1';
-				wait for 100 ns;
-		min <= x"2"; max <= x"7";
-				wait for 100 ns;
-		cnten <='0';		
-		wait;		
+   begin		 
+		min <= x"00"; max <= x"55";						wait for 100 ns;
+		cnten <= '0';		updwn <= '1';		reset <= '1'; 	wait for 100 ns;	
+
+				
+		cnten <= '1';		updwn <= '1';		reset <= '0'; 	wait for 1500 ns;			
+
+		min <= x"00"; max <= x"99";						wait for 100 ns; 		
+		cnten <= '1';		updwn <= '0';		reset <= '0'; 	wait for 1500 ns;	
+		
+		min <= x"02"; max <= x"72";						wait for 100 ns;		
+		cnten <= '1';		updwn <= '1';		reset <= '0'; 	wait for 1500 ns;		
+
+		min <= x"01"; max <= x"31";						wait for 100 ns;		
+		cnten <= '1';		updwn <= '0';		reset <= '0'; 	wait for 1500 ns;	 
+ 
+		wait;
    end process;
 
 END;
