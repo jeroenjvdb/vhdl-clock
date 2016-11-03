@@ -1,0 +1,8 @@
+INTSTYLE=ise
+INFILE=D:\school\SCH-IW_EI\elektronica\digitale\labo\working_directory\clock\time_block.ncd
+OUTFILE=D:\school\SCH-IW_EI\elektronica\digitale\labo\working_directory\clock\time_block.bit
+FAMILY=Spartan6
+PART=xc6slx16-3csg324
+WORKINGDIR=D:\school\SCH-IW_EI\elektronica\digitale\labo\working_directory\clock
+LICENSE=WebPack
+USER_INFO=211259187_0_0_732

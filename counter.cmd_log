@@ -1,1 +1,4 @@
 xst -intstyle ise -ifn "D:/school/SCH-IW_EI/elektronica/digitale/labo/working_directory/clock/counter.xst" -ofn "D:/school/SCH-IW_EI/elektronica/digitale/labo/working_directory/clock/counter.syr" 
+vhdtdtfi -lib work counter.vhd -prj clock -o counter.spl -module counter -template D:/programma's/xilinx/14.4/ISE_DS/ISE//data/splfile.tft -deleteonerror 
+spl2sym -intstyle ise -family spartan6 counter.spl D:/school/SCH-IW_EI/elektronica/digitale/labo/working_directory/clock/counter.sym 
+vhdtdtfi -prj clock -o D:/school/SCH-IW_EI/elektronica/digitale/labo/working_directory/clock/counter.vhi -module counter -template D:/programma's/xilinx/14.4/ISE_DS/ISE//data/vhdlinst.tft -deleteonerror -lib work counter.vhd 

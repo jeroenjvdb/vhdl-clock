@@ -1,0 +1,10 @@
+[Inputs]
+sysclk
+reset
+cnten
+mode
+btn
+[Outputs]
+tc
+=time_cnt[23:0]=
+[BiDir]

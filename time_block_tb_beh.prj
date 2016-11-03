@@ -1,0 +1,3 @@
+vhdl work "counter.vhd"
+vhdl work "time.vhd"
+vhdl work "time_tb.vhd"

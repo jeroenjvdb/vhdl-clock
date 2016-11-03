@@ -1,0 +1,8 @@
+vhdtdtfi -lib work counter.vhd -lib work time_block.vhd -prj clock -o time_block.spl -module time_block -template D:/programma's/xilinx/14.4/ISE_DS/ISE//data/splfile.tft -deleteonerror 
+spl2sym -intstyle ise -family spartan6 time_block.spl D:/school/SCH-IW_EI/elektronica/digitale/labo/working_directory/clock/time_block.sym 
+xst -intstyle ise -ifn "D:/school/SCH-IW_EI/elektronica/digitale/labo/working_directory/clock/time_block.xst" -ofn "D:/school/SCH-IW_EI/elektronica/digitale/labo/working_directory/clock/time_block.syr" 
+ngdbuild -intstyle ise -dd _ngo -nt timestamp -i -p xc6slx16-csg324-3 time_block.ngc time_block.ngd  
+map -intstyle ise -p xc6slx16-csg324-3 -w -logic_opt off -ol high -t 1 -xt 0 -register_duplication off -r 4 -global_opt off -mt off -ir off -pr off -lc off -power off -o time_block_map.ncd time_block.ngd time_block.pcf 
+par -w -intstyle ise -ol high -mt off time_block_map.ncd time_block.ncd time_block.pcf 
+trce -intstyle ise -v 3 -s 3 -n 3 -fastpaths -xml time_block.twx time_block.ncd -o time_block.twr time_block.pcf 
+bitgen -intstyle ise -f time_block.ut time_block.ncd 
