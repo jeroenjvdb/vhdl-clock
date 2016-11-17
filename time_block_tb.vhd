@@ -45,7 +45,7 @@ ARCHITECTURE behavior OF time_block_tb IS
          reset : IN  std_logic;
          cnten : IN  std_logic;
          mode : IN  std_logic;
-         btn : IN  std_logic;
+         incr, decr : IN  std_logic;
          time_cnt : OUT  std_logic_vector(23 downto 0);
          tc : OUT  std_logic
         );
@@ -57,14 +57,16 @@ ARCHITECTURE behavior OF time_block_tb IS
    signal reset : std_logic := '0';
    signal cnten : std_logic := '0';
    signal mode : std_logic := '0';
-   signal btn : std_logic := '0';
+   --signal btn : std_logic := '0';
+	signal incr : std_logic := '0';
+	signal decr : std_logic := '0';
 
  	--Outputs
    signal time_cnt : std_logic_vector(23 downto 0);
    signal tc : std_logic;
 
    -- Clock period definitions
-   constant sysclk_period : time := 1 ns;
+   constant sysclk_period : time := 1 ns; 
  
 BEGIN
  
@@ -74,7 +76,8 @@ BEGIN
           reset => reset,
           cnten => cnten,
           mode => mode,
-          btn => btn,
+          incr => incr,
+			 decr => decr,
           time_cnt => time_cnt,
           tc => tc
         );
@@ -107,40 +110,51 @@ BEGIN
 		-- stel instel mode in op setT3
 		mode <='1';	wait for sysclk_period;
 		mode <='0';	wait for 100 ns;	
-			-- stel T3 in
-		btn <='1';	wait for sysclk_period;
-		btn <='0';	wait for sysclk_period;
-		btn <='1';	wait for sysclk_period;
-		btn <='0';	wait for sysclk_period;
-		btn <='1';	wait for sysclk_period;
-		btn <='0';	wait for 100 ns;	
+			-- stel T3 in 
+		incr <='1';	wait for sysclk_period;
+		incr <='0';	wait for sysclk_period;
+		incr <='1';	wait for sysclk_period;
+		incr <='0';	wait for sysclk_period;
+		incr <='1';	wait for sysclk_period;
+		incr <='0';	wait for 100 ns;	
 		-- stel instel mode in op setT2	
 		mode <='1';	wait for sysclk_period; 
 		mode <='0';	wait for 100 ns;	
 			-- stel T2 in	
-		btn <='1';	wait for sysclk_period;
-		btn <='0';	wait for sysclk_period;
-		btn <='1';	wait for sysclk_period;
-		btn <='0';	wait for sysclk_period;
-		btn <='1';	wait for sysclk_period;
-		btn <='0';	wait for 100 ns;		
+		decr <='1';	wait for sysclk_period;
+		decr <='0';	wait for sysclk_period;
+		wait for 150ns;
+		decr <='1';	wait for sysclk_period;
+		decr <='0';	wait for sysclk_period;
+		wait for 100ns;
+		decr <='1';	wait for sysclk_period;
+		decr <='0';	wait for 100 ns;		
 		
 		-- stel instel mode in op setT1
 		mode <='1';	wait for sysclk_period;
 		mode <='0';	wait for 100 ns;	
 			-- stel T1 in	
-		btn <='1';	wait for sysclk_period;
-		btn <='0';	wait for sysclk_period;
-		btn <='1';	wait for sysclk_period;
-		btn <='0';	wait for sysclk_period;
-		btn <='1';	wait for sysclk_period;
-		btn <='0';	wait for 100 ns;	
+		decr <='1';	wait for sysclk_period;
+		decr <='0';	wait for sysclk_period;
+		wait for 120ns;
+		decr <='1';	wait for sysclk_period;
+		decr <='0';	wait for sysclk_period;
+		wait for 130ns;
+		decr <='1';	wait for sysclk_period;
+		decr <='0';	wait for 100 ns;	
 		
 		-- stel  mode in op tellen	
 		mode <='1';	wait for sysclk_period;
 		mode <='0';	wait for 100 ns;
+		
+		wait for 2ns;
+		incr <='1'; wait for sysclk_period;
+		incr <= '0'; wait for sysclk_period;
+		decr <= '1'; wait for sysclk_period;
+		decr <= '0'; wait for sysclk_period;
+		wait for 100ns;
 	
    wait;
    end process;
-
+ 
 END;
