@@ -88,10 +88,10 @@ begin
 	NXT_STATE: process (present_state, mode)		
 	begin
 		case present_state is
-			when cnt   =>	if mode = '1' then 	next_state <= setT3;	else next_state <= cnt;		end if;
-			when setT3 =>	if mode = '1' then 	next_state <= setT2;	else next_state <= setT3;	end if;
-			when setT2 =>	if mode = '1' then 	next_state <= setT1;	else next_state <= setT2;	end if;	
-			when setT1 =>	if mode = '1' then 	next_state <= cnt;	else next_state <= setT1;	end if;			
+			when cnt   =>	if mode = '1' then 	next_state <= setT1;	else next_state <= cnt;		end if;
+			when setT3 =>	if mode = '1' then 	next_state <= cnt;	else next_state <= setT3;	end if;
+			when setT2 =>	if mode = '1' then 	next_state <= setT3;	else next_state <= setT2;	end if;	
+			when setT1 =>	if mode = '1' then 	next_state <= setT2;	else next_state <= setT1;	end if;			
 		end case;
 	end process;
 	-- het OUTPUTS process zal, afhankelijk van de "present-state", de verbindingen met de correcte (teller)poorten leggen
@@ -106,9 +106,9 @@ begin
 	end if;
 	case present_state is
 			when cnt  	=> cntenT1 <= tcT2;	cntenT2 <= tcT1;	cntenT3 <= cnten; ostate <= "00";
-			when setT3  =>	cntenT1 <= '0';	cntenT2 <= '0'; 	cntenT3 <= btn; ostate <= "01";
+			when setT3  =>	cntenT1 <= '0';	cntenT2 <= '0'; 	cntenT3 <= btn; ostate <= "11";
 			when setT2  =>	cntenT1 <= '0';	cntenT2 <= btn;	cntenT3 <= '0'; ostate <= "10";
-			when setT1  =>	cntenT1 <= btn;	cntenT2 <= '0'; 	cntenT3 <= '0'; ostate <= "11";
+			when setT1  =>	cntenT1 <= btn;	cntenT2 <= '0'; 	cntenT3 <= '0'; ostate <= "01";
 		end case;
 	end process;	
 	
