@@ -38,7 +38,7 @@ entity wekker_block is
            counterInput : in  STD_LOGIC_VECTOR (23 downto 0);
            sysclk : in  STD_LOGIC;
 			  wstate : out STD_LOGIC_VECTOR (1 downto 0);
-           led : out  STD_LOGIC;
+           ledWekSignaal : out  STD_LOGIC;
 			  ledOn : out STD_LOGIC);
 end wekker_block;
 
@@ -77,6 +77,8 @@ begin
 	begin
 		if rising_edge(sysclk) then 								
 			if reset = '1' then present_state <= static; else present_state <= next_state; end if;
+			ledWekSignaal <= ledOut;
+			ledOn <= onOff;
 		end if;
 	end process;
 	
@@ -91,15 +93,20 @@ begin
 	end process;
 	
 	-- het OUTPUTS process zal, afhankelijk van de "present-state", de verbindingen met de correcte (teller)poorten leggen
-	OUTPUTS : process (present_state,tcT1,tcT2,incr,decr,updwn,ledOut,btnStop) 		
+	
+	BTNCHANGER : process (incr,decr) 		
 	begin	
    if incr = '1' 
 		then upDwn <= '1'; btn <= '1'; 
 	elsif decr = '1' 
-		then upDwn <= '0'; btn <= '1'; 
+		then upDwn <= '0'; btn <= '1';
 	else 
 		upDwn <= '1'; btn <= '0'; 
 	end if;	--else if decr = '1' then upDwn <= '0'; btn <= '1'; else btn <= '0';	
+	end process;
+	
+	OUTPUTS : process (present_state, btn) 		
+	begin	
 	case present_state is
 			when static  	=> cntenT1 <= '0';	cntenT2 <= '0';	cntenT3 <= '0'; wstate <= "00"; 
 			when setT3  =>	cntenT1 <= '0';	cntenT2 <= '0'; 	cntenT3 <= btn; wstate <= "01"; 
@@ -111,13 +118,18 @@ begin
    WEKKER_FUNCTIONALITEIT	: process (counterInput, btnStop)
 	begin
 	if present_state = static then
-		if counterInput = countcheck and onOff = '1' then ledOut <= '1'; else ledOut <= '0'; end if;
+		if counterInput = countcheck and onOff = '1' then ledOut <= '1'; end if;
 	end if;
 	if btnStop = '1' then
-		if ledOut = '1' then ledOut <= '0'; else onOff <= not onOff; end if;
+		if ledOut = '0' then onOff <= not onOff; else ledOut <= '0'; end if;
 	end if;
-	led <= ledOut;
-	ledOn <= onOff;
+	end process;
+	
+	WEKKER_FUNCTIONALITEIT2	: process (btnStop)
+	begin
+	--if btnStop = '1' then
+		--if ledOut = '1' then ledOut <= '0'; else onOff <= not onOff; end if;
+	--end if;
 	end process;
 	
 	T1: counter PORT MAP(cnten => cntenT1, reset => reset,sysclk => sysclk,min => x"00",max => x"59",count => countcheck(7 downto 0), tc => tcT1, upDwn => upDwn );

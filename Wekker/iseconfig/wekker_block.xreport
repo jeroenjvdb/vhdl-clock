@@ -1,11 +1,11 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <report-views version="2.0" >
  <header>
-  <DateModified>2016-11-17T21:31:34</DateModified>
+  <DateModified>2016-11-18T21:42:21</DateModified>
   <ModuleName>wekker_block</ModuleName>
   <SummaryTimeStamp>Unknown</SummaryTimeStamp>
   <SavedFilePath>D:/School UAntwerpen/Electronica-1/Labo Digitaal/ISE Projects/Gitmap kopie/vhdl-clock/Wekker/iseconfig/wekker_block.xreport</SavedFilePath>
-  <ImplementationReportsDirectory>D:/School UAntwerpen/Electronica-1/Labo Digitaal/ISE Projects/Gitmap kopie/vhdl-clock/Wekker</ImplementationReportsDirectory>
+  <ImplementationReportsDirectory>D:/School UAntwerpen/Electronica-1/Labo Digitaal/ISE Projects/Gitmap kopie/vhdl-clock/Wekker\</ImplementationReportsDirectory>
   <DateInitialized>2016-11-17T14:33:40</DateInitialized>
   <EnableMessageFiltering>false</EnableMessageFiltering>
  </header>
