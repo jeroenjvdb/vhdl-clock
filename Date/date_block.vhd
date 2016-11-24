@@ -34,7 +34,7 @@ entity date_block is
 				cnten	 			: in  STD_LOGIC;
 				mode		: in  STD_LOGIC;									-- OPGELET : voor deze ingangen mag de ingang slechts gedurende 1 klokperiode 1 zijn.
 				incr, decr	: in  STD_LOGIC;
-				ostate			: out  STD_LOGIC_VECTOR (1 downto 0);
+				ostate			: out  STD_LOGIC_VECTOR (3 downto 0);
 				date_cnt 		: out  STD_LOGIC_VECTOR (23 downto 0));
 end date_block;
 
@@ -105,10 +105,10 @@ begin
 		upDwn <= '1'; btn <= '0'; 
 	end if;
 	case present_state is
-			when cnt  	=> cntenT1 <= tcT2;	cntenT2 <= tcT1;	cntenT3 <= cnten; ostate <= "00";
-			when setT3  =>	cntenT1 <= '0';	cntenT2 <= '0'; 	cntenT3 <= btn; ostate <= "11";
-			when setT2  =>	cntenT1 <= '0';	cntenT2 <= btn;	cntenT3 <= '0'; ostate <= "10";
-			when setT1  =>	cntenT1 <= btn;	cntenT2 <= '0'; 	cntenT3 <= '0'; ostate <= "01";
+			when cnt  	=> cntenT1 <= tcT2;	cntenT2 <= tcT1;	cntenT3 <= cnten; ostate <= "1000";
+			when setT3  =>	cntenT1 <= '0';	cntenT2 <= '0'; 	cntenT3 <= btn; ostate <= "0100";
+			when setT2  =>	cntenT1 <= '0';	cntenT2 <= btn;	cntenT3 <= '0'; ostate <= "0010";
+			when setT1  =>	cntenT1 <= btn;	cntenT2 <= '0'; 	cntenT3 <= '0'; ostate <= "0001";
 		end case;
 	end process;	
 	
