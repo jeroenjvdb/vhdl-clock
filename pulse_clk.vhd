@@ -2,9 +2,9 @@
 -- Company: 
 -- Engineer: 
 -- 
--- Create Date:    11:15:07 11/04/2016 
+-- Create Date:    14:43:42 11/02/2016 
 -- Design Name: 
--- Module Name:    debouncer - Behavioral 
+-- Module Name:    pulse_clk - Behavioral 
 -- Project Name: 
 -- Target Devices: 
 -- Tool versions: 
@@ -29,29 +29,16 @@ use IEEE.STD_LOGIC_1164.ALL;
 --library UNISIM;
 --use UNISIM.VComponents.all;
 
-entity debouncer is
-	 generic (width : positive := 4);
-    Port ( inp : in  STD_LOGIC;
-           sysclk : in  STD_LOGIC;
-           debclk : in  STD_LOGIC;
-           op : out  STD_LOGIC);
-end debouncer;
+entity pulse_clk is
+    Port ( clock : in  STD_LOGIC;
+           prescaler : in  STD_LOGIC;
+           pulse : out  STD_LOGIC);
+end pulse_clk;
 
-architecture Behavioral of debouncer is
-
-signal del : std_logic_vector (width downto 1);
-constant val : STD_LOGIC_VECTOR (width downto 1) := (others => '1'); 
+architecture Behavioral of pulse_clk is
 
 begin
-	process(sysclk)
-	begin
-		if rising_edge(sysclk) then
-			if debclk = '1' then 
-				del(1) <= inp;
-				del(width downto 2) <= del((width -1) downto 1);
-			end if;
-		end if;
-		end process;
-  op  <= '1' when del = val else '0';
+
+
 end Behavioral;
 

@@ -2,9 +2,9 @@
 -- Company: 
 -- Engineer: 
 -- 
--- Create Date:    11:15:07 11/04/2016 
+-- Create Date:    15:14:53 11/17/2016 
 -- Design Name: 
--- Module Name:    debouncer - Behavioral 
+-- Module Name:    blinking - Behavioral 
 -- Project Name: 
 -- Target Devices: 
 -- Tool versions: 
@@ -29,29 +29,34 @@ use IEEE.STD_LOGIC_1164.ALL;
 --library UNISIM;
 --use UNISIM.VComponents.all;
 
-entity debouncer is
-	 generic (width : positive := 4);
-    Port ( inp : in  STD_LOGIC;
-           sysclk : in  STD_LOGIC;
-           debclk : in  STD_LOGIC;
-           op : out  STD_LOGIC);
-end debouncer;
+entity blinking is
+    Port ( istate : in  STD_LOGIC_VECTOR (3 downto 0);
+			  sysclk : in std_logic;
+			  bliclk : in std_logic;
+           obli0 : out  STD_LOGIC_Vector (3 downto 0));
+end blinking;
 
-architecture Behavioral of debouncer is
+architecture Behavioral of blinking is
 
-signal del : std_logic_vector (width downto 1);
-constant val : STD_LOGIC_VECTOR (width downto 1) := (others => '1'); 
+	signal obli0_s : STD_LOGIC_Vector (3 downto 0) := (others => '0');
 
 begin
 	process(sysclk)
 	begin
 		if rising_edge(sysclk) then
-			if debclk = '1' then 
-				del(1) <= inp;
-				del(width downto 2) <= del((width -1) downto 1);
+			if bliclk = '1' then
+				case istate is
+					--when "0000" => 
+					when "0001" => obli0_s <= "0011";
+					when "0010" => obli0_s <= "0011";
+					when "0100" => obli0_s <= "1100";
+					when others => obli0_s <= "0000";
+				end case;
+			else
+				obli0_s <= "0000";
 			end if;
 		end if;
-		end process;
-  op  <= '1' when del = val else '0';
+	end process;
+	obli0 <= obli0_s;
 end Behavioral;
 

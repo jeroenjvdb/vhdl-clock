@@ -42,7 +42,7 @@ COMPONENT debouncer
 Port( inp 	: in STD_LOGIC;
 		debclk : in STD_LOGIC;
 		sysclk : in STD_LOGIC;
-		outp 	 : out STD_LOGIC);
+		op 	 : out STD_LOGIC);
 END COMPONENT;
 
 COMPONENT one_pulse
@@ -55,7 +55,7 @@ END COMPONENT;
 	signal pulse : STD_LOGIC := '0';
 
 begin
-	debouncer: 	debouncer port map (inp=>btn, outp=>pulse, sysclk=>sysclk, debclk=>debclk);
-	one_pulse: 	one_pulse	 port map (inp=>pulse, outp=>op ,sysclk=>sysclk);
+	debouncer1: 	debouncer port map (inp=>btn, op=>pulse, sysclk=>sysclk, debclk=>debclk);
+	one_pulse1: 	one_pulse	 port map (inp=>pulse, outp=>op ,sysclk=>sysclk, debclk => debclk);
 end Behavioral;
 
