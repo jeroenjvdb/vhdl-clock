@@ -37,9 +37,24 @@ entity one_pulse is
 end one_pulse;
 
 architecture Behavioral of one_pulse is
-
-begin
-
-
+	type state is (wait1, outp1, wait0);
+	signal current_state, next_state : state;
+begin	
+	STATE_REG: process(sysclk)
+	begin
+		if rising_edge(sysclk) then 
+			current_state <= next_state; -- na cycle clock instellen van 1 of 0;
+		end if;
+	end process;
+	
+	SET_STATE: process (inp, current_state)
+	begin 
+	case current_state is
+		when outp1 =>  next_state <= wait0;
+		when wait1 =>  if inp = '1' then next_state <= outp1; else next_state <= wait1; end if;
+		when wait0 =>  if inp = '0' then next_state <= wait1; else next_state <= wait0; end if;
+	end case;
+	end process;
+	outp  <= '1' when current_state = outp1 else '0';
 end Behavioral;
 
