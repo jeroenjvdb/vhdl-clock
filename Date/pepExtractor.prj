@@ -1,0 +1,3 @@
+work	"../counter.vhd"
+work	"date_block.vhd"
+work	"max_day_setter.vhd"

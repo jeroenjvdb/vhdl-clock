@@ -1,0 +1,3 @@
+vhdl work "../counter.vhd"
+vhdl work "wekker_block.vhd"
+vhdl work "tb_wekker_block.vhd"

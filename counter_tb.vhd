@@ -96,10 +96,11 @@ BEGIN
    stim_proc: process 
    begin		 
 		min <= x"00"; max <= x"55";						wait for 100 ns;
-		cnten <= '0';		updwn <= '1';		reset <= '1'; 	wait for 100 ns;	
+		cnten <= '0';		updwn <= '1';		reset <= '1'; 	wait for 100 ns;
 
 				
-		cnten <= '1';		updwn <= '1';		reset <= '0'; 	wait for 1500 ns;			
+		cnten <= '1';		updwn <= '1';		reset <= '0'; 	wait for 100 ns;
+		cnten <= '1';		updwn <= '0';		reset <= '0';	wait for 100 ns;
 
 		min <= x"00"; max <= x"99";						wait for 100 ns; 		
 		cnten <= '1';		updwn <= '0';		reset <= '0'; 	wait for 1500 ns;	

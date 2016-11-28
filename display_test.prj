@@ -1,0 +1,4 @@
+vhdl work "BCD7segmDec.vhd"
+vhdl work "../../voorbeelden/Control.vhd"
+vhdl work "weergave.vhd"
+vhdl work "display_test.vhd"

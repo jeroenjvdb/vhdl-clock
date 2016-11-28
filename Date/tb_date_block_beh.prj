@@ -1,0 +1,4 @@
+vhdl work "max_day_setter.vhd"
+vhdl work "../counter.vhd"
+vhdl work "date_block.vhd"
+vhdl work "tb_date_block.vhd"

@@ -1,0 +1,3 @@
+vhdl isim_temp "../counter.vhd"
+vhdl isim_temp "wekker_block.vhd"
+vhdl isim_temp "tb_wekker_block.vhd"
