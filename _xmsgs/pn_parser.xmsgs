@@ -8,6 +8,7 @@
 <!-- Copyright (c) 1995-2012 Xilinx, Inc.  All rights reserved.    -->
 
 <messages>
+<<<<<<< HEAD
 <msg type="info" file="ProjectMgmt" num="1061" ><arg fmt="%s" index="1">Parsing VHDL file &quot;D:/school/SCH-IW_EI/elektronica/digitale/labo/working_directory/clock/button.vhd&quot; into library work</arg>
 </msg>
 
@@ -20,5 +21,7 @@
 <msg type="info" file="ProjectMgmt" num="1061" ><arg fmt="%s" index="1">Parsing VHDL file &quot;D:/school/SCH-IW_EI/elektronica/digitale/labo/working_directory/clock/one_pulse.vhd&quot; into library work</arg>
 </msg>
 
+=======
+>>>>>>> 0a9aed38f0ea67681cbbc16edf56cf9b4a6f17d8
 </messages>
 

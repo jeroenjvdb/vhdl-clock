@@ -1,0 +1,31 @@
+Command line:
+   tb_wekker_block_isim_beh.exe
+     -simmode  gui
+     -simrunnum  0
+     -socket  2266
+
+Fri Nov 18 22:17:27 2016
+
+
+ Elaboration Time: 0.015625 sec
+
+ Current Memory Usage: 840.831 Meg
+
+ Total Signals          : 80
+ Total Nets             : 136
+ Total Signal Drivers   : 44
+ Total Blocks           : 7
+ Total Primitive Blocks : 5
+ Total Processes        : 32
+ Total Traceable Variables  : 14
+ Total Scalar Nets and Variables : 620
+Total Line Count : 114
+Total Line Count : 114
+Total Line Count : 114
+
+ Total Simulation Time: 0.453125 sec
+
+ Current Memory Usage: 683.545 Meg
+
+Fri Nov 18 22:28:45 2016
+
