@@ -37,9 +37,10 @@ entity wekker_block is
            decr : in  STD_LOGIC;
            counterInput : in  STD_LOGIC_VECTOR (23 downto 0);
            sysclk : in  STD_LOGIC;
-			  wstate : out STD_LOGIC_VECTOR (3 downto 0);
+		   wstate : out STD_LOGIC_VECTOR (1 downto 0);
+		   alarmOutput : out STD_LOGIC_VECTOR (23 downto 0);
            ledWekSignaal : out  STD_LOGIC;
-			  ledOn : out STD_LOGIC);
+		   ledOn : out STD_LOGIC);
 end wekker_block;
 
 architecture Behavioral of wekker_block is
@@ -79,6 +80,7 @@ begin
 			if reset = '1' then present_state <= static; else present_state <= next_state; end if;
 			ledWekSignaal <= ledOut;
 			ledOn <= onOff;
+			alarmOutput <= countcheck;
 		end if;
 	end process;
 	
@@ -108,10 +110,10 @@ begin
 	OUTPUTS : process (present_state, btn) 		
 	begin	
 	case present_state is
-			when static  	=> cntenT1 <= '0';	cntenT2 <= '0';	cntenT3 <= '0'; wstate <= "1000"; 
-			when setT3  =>	cntenT1 <= '0';	cntenT2 <= '0'; 	cntenT3 <= btn; wstate <= "0100"; 
-			when setT2  =>	cntenT1 <= '0';	cntenT2 <= btn;	cntenT3 <= '0'; wstate <= "0010";
-			when setT1  =>	cntenT1 <= btn;	cntenT2 <= '0'; 	cntenT3 <= '0'; wstate <= "0001";
+			when static  	=> cntenT1 <= '0';	cntenT2 <= '0';	cntenT3 <= '0'; wstate <= "00"; 
+			when setT3  =>	cntenT1 <= '0';	cntenT2 <= '0'; 	cntenT3 <= btn; wstate <= "01"; 
+			when setT2  =>	cntenT1 <= '0';	cntenT2 <= btn;	cntenT3 <= '0'; wstate <= "10";
+			when setT1  =>	cntenT1 <= btn;	cntenT2 <= '0'; 	cntenT3 <= '0'; wstate <= "11";
 		end case;
 	end process;
 
