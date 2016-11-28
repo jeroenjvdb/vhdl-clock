@@ -35,7 +35,9 @@ entity time_block is
 				mode 			: in  STD_LOGIC;									-- OPGELET : voor deze ingangen mag de ingang slechts gedurende 1 klokperiode 1 zijn.
 				incr, decr	: in  STD_LOGIC;
 				time_cnt 		: out  STD_LOGIC_VECTOR (23 downto 0);
-				tc 				: out  STD_LOGIC);
+				tc 				: out  STD_LOGIC;
+				state_vect		: out	 STD_LOGIC_VECTOR (3 downto 0) -- "1000" = counter, "0100" = uur aanpassen, "0010" = min aanpassen, "0001" = sec aanpassen
+				);
 end time_block;
 
 architecture Behavioral of time_block is
@@ -58,6 +60,7 @@ COMPONENT counter
 	--signal incr					: std_logic := '0';
 	--signal decr					: std_logic := '0';
 	signal btn					: std_logic := '0';
+	--signal stateVect			: std_logic_vector (1 downto 0);
 ----------------------------------------------------------------
 -- TOESTANDSMACHINE VOOR DE BEDIENING
 -- declaratie toestanden
@@ -76,14 +79,15 @@ begin
 	NXT_STATE: process (present_state, mode)		
 	begin
 		case present_state is
-			when cnt   =>	if mode = '1' then 	next_state <= setT3;	else next_state <= cnt;		end if;
-			when setT3 =>	if mode = '1' then 	next_state <= setT2;	else next_state <= setT3;	end if;
-			when setT2 =>	if mode = '1' then 	next_state <= setT1;	else next_state <= setT2;	end if;	
-			when setT1 =>	if mode = '1' then 	next_state <= cnt;	else next_state <= setT1;	end if;			
+			when cnt   =>	if mode = '1' then 	next_state <= setT3;	else next_state <= cnt;		end if; 
+			when setT3 =>	if mode = '1' then 	next_state <= setT2;	else next_state <= setT3;	end if; 
+			when setT2 =>	if mode = '1' then 	next_state <= setT1;	else next_state <= setT2;	end if; 
+			when setT1 =>	if mode = '1' then 	next_state <= cnt;	else next_state <= setT1;	end if; 
 		end case;
+		--state <= present_state;
 	end process;
 	-- het OUTPUTS process zal, afhankelijk van de "present-state", de verbindingen met de correcte (teller)poorten leggen
-	OUTPUTS : process (present_state,cnten,tcT1,tcT2,incr, decr, btn) 		
+	OUTPUTS : process (present_state,cnten,tcT1,tcT2,incr, decr, btn) 		 
 	begin			
 	if incr = '1' 
 		then upDwn <= '1'; btn <= '1'; 
@@ -91,12 +95,12 @@ begin
 		then upDwn <= '0'; btn <= '1'; 
 	else 
 		upDwn <= '1'; btn <= '0'; 
-	end if;	--else if decr = '1' then upDwn <= '0'; btn <= '1'; else btn <= '0';
+	end if;
 	case present_state is
-			when cnt  	=> cntenT1 <= cnten;	cntenT2 <= tcT1;	cntenT3 <= tcT2;
-			when setT3  =>	cntenT1 <= '0';	cntenT2 <= '0'; 	cntenT3 <= btn;
-			when setT2  =>	cntenT1 <= '0';	cntenT2 <= btn;	cntenT3 <= '0';
-			when setT1  =>	cntenT1 <= btn;	cntenT2 <= '0'; 	cntenT3 <= '0';
+			when cnt  	=> cntenT1 <= cnten;	cntenT2 <= tcT1;	cntenT3 <= tcT2; state_vect <= "1000";
+			when setT3  =>	cntenT1 <= '0';	cntenT2 <= '0'; 	cntenT3 <= btn; state_vect <= "0100";
+			when setT2  =>	cntenT1 <= '0';	cntenT2 <= btn;	cntenT3 <= '0'; state_vect <= "1000";
+			when setT1  =>	cntenT1 <= btn;	cntenT2 <= '0'; 	cntenT3 <= '0'; state_vect <= "0001";
 		end case;
 	end process;
 

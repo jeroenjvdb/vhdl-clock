@@ -47,7 +47,8 @@ ARCHITECTURE behavior OF time_block_tb IS
          mode : IN  std_logic;
          incr, decr : IN  std_logic;
          time_cnt : OUT  std_logic_vector(23 downto 0);
-         tc : OUT  std_logic
+         tc : OUT  std_logic;
+			state_vect: OUT std_logic_vector(1 downto 0)
         );
     END COMPONENT;
     
@@ -64,6 +65,7 @@ ARCHITECTURE behavior OF time_block_tb IS
  	--Outputs
    signal time_cnt : std_logic_vector(23 downto 0);
    signal tc : std_logic;
+	signal state_vect: std_logic_vector(1 downto 0);
 
    -- Clock period definitions
    constant sysclk_period : time := 1 ns; 
@@ -79,7 +81,8 @@ BEGIN
           incr => incr,
 			 decr => decr,
           time_cnt => time_cnt,
-          tc => tc
+          tc => tc,
+			 state_vect => state_vect	
         );
 
    -- Clock process definitions

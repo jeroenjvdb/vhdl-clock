@@ -1,0 +1,9 @@
+## 7 segment display
+Net "seg<0>" LOC = T17 ; # CA
+Net "seg<1>" LOC = T18 ; # CB
+Net "seg<2>" LOC = U17 ; # CC
+Net "seg<3>" LOC = U18 ; # CD
+Net "seg<4>" LOC = M14 ; # CE
+Net "seg<5>" LOC = N14 ; # CF
+Net "seg<6>" LOC = L14 ; # CG
+Net "seg<7>" LOC = M13 ; # DP

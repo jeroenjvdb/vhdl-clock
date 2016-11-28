@@ -1,0 +1,2 @@
+vhdl isim_temp "select_show_function.vhd"
+vhdl isim_temp "select_show_function_tb.vhd"
