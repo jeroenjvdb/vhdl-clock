@@ -1,0 +1,4 @@
+vhdl isim_temp "BCD7segmDec.vhd"
+vhdl isim_temp "../../voorbeelden/Control.vhd"
+vhdl isim_temp "weergave.vhd"
+vhdl isim_temp "display_test.vhd"

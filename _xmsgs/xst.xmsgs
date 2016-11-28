@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- IMPORTANT: This is an internal file that has been generated
+     by the Xilinx ISE software.  Any direct editing or
+     changes made to this file may result in unpredictable
+     behavior or data corruption.  It is strongly advised that
+     users do not edit the contents of this file. -->
+<messages>
+<msg type="warning" file="Xst" num="2972" delta="old" >&quot;<arg fmt="%s" index="1">D:\school\SCH-IW_EI\elektronica\digitale\labo\working_directory\clock\display_test.vhd</arg>&quot; line <arg fmt="%d" index="2">59</arg>. All outputs of instance &lt;<arg fmt="%s" index="3">display</arg>&gt; of block &lt;<arg fmt="%s" index="4">weergave</arg>&gt; are unconnected in block &lt;<arg fmt="%s" index="5">display_test</arg>&gt;. Underlying logic will be removed.
+</msg>
+
+<msg type="info" file="Xst" num="3210" delta="old" >&quot;<arg fmt="%s" index="1">D:\school\SCH-IW_EI\elektronica\digitale\labo\working_directory\clock\display_test.vhd</arg>&quot; line <arg fmt="%s" index="2">59</arg>: Output port &lt;<arg fmt="%s" index="3">cath</arg>&gt; of the instance &lt;<arg fmt="%s" index="4">display</arg>&gt; is unconnected or connected to loadless signal.
+</msg>
+
+<msg type="info" file="Xst" num="3210" delta="old" >&quot;<arg fmt="%s" index="1">D:\school\SCH-IW_EI\elektronica\digitale\labo\working_directory\clock\display_test.vhd</arg>&quot; line <arg fmt="%s" index="2">59</arg>: Output port &lt;<arg fmt="%s" index="3">an</arg>&gt; of the instance &lt;<arg fmt="%s" index="4">display</arg>&gt; is unconnected or connected to loadless signal.
+</msg>
+
+</messages>
+

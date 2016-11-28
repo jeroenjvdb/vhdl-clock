@@ -1,0 +1,7 @@
+work	"../../voorbeelden/Control.vhd"
+work	"BCD7segmDec.vhd"
+work	"clock.vhd"
+work	"counter.vhd"
+work	"time_block.vhd"
+work	"timer.vhd"
+work	"weergave4dig7segm.vhd"

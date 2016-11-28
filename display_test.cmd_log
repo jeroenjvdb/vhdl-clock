@@ -1,0 +1,7 @@
+xst -intstyle ise -ifn "D:/school/SCH-IW_EI/elektronica/digitale/labo/working_directory/clock/display_test.xst" -ofn "D:/school/SCH-IW_EI/elektronica/digitale/labo/working_directory/clock/display_test.syr" 
+ngdbuild -intstyle ise -dd _ngo -nt timestamp -i -p xc6slx16-csg324-3 display_test.ngc display_test.ngd  
+map -intstyle ise -p xc6slx16-csg324-3 -w -logic_opt off -ol high -t 1 -xt 0 -register_duplication off -r 4 -global_opt off -mt off -ir off -pr off -lc off -power off -o display_test_map.ncd display_test.ngd display_test.pcf 
+xst -intstyle ise -ifn "D:/school/SCH-IW_EI/elektronica/digitale/labo/working_directory/clock/display_test.xst" -ofn "D:/school/SCH-IW_EI/elektronica/digitale/labo/working_directory/clock/display_test.syr" 
+xst -intstyle ise -ifn "D:/school/SCH-IW_EI/elektronica/digitale/labo/working_directory/clock/display_test.xst" -ofn "D:/school/SCH-IW_EI/elektronica/digitale/labo/working_directory/clock/display_test.syr" 
+ngdbuild -intstyle ise -dd _ngo -nt timestamp -uc BCD7segmDec_UCF.ucf -p xc6slx16-csg324-3 display_test.ngc display_test.ngd  
+ngdbuild -intstyle ise -dd _ngo -nt timestamp -uc BCD7segmDec_UCF.ucf -p xc6slx16-csg324-3 display_test.ngc display_test.ngd  
